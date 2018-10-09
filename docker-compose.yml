@@ -1,0 +1,19 @@
+version: '3'
+services:
+  react-app:
+    container_name: react
+    build: ./
+    command: npm start
+    working_dir: /var/www/react-app
+    links:
+      - postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/var/www/react-app
+  
+  postgres:
+    container_name: postgres_db
+    image: postgres
+    ports:
+      - "5432:5432"
